@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analyzing Agricultural Outcomes in Iowa Tutorial</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#analyzing-agricultural-outcomes-in-iowa">Analyzing Agricultural Outcomes in Iowa</a>
+<ul>
+<li><a href="#introduction">Introduction1</a></li>
+<li><a href="#how-to-use-this-tutorial">How to Use This Tutorial</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="analyzing-agricultural-outcomes-in-iowa">Analyzing Agricultural Outcomes in Iowa</h1>
+<p><em>By Tracy Tien, <a href="https://www.science.smith.edu/sal/">Smith College Spatial Analysis Lab</a></em></p>
+<h2 id="introduction">Introduction<sup class="footnote-ref"><a href="#fn1" id="fnref1">1</a></sup></h2>
+<p>In our explorations of the history of agricultural land use and its impacts on environmental and human health, we are reading about the changes to farming in the U.S. including the shift from smaller family farms that produced a variety of crops, to large industrial monocultures. This raises the question: What are the adverse environmental and cultural impacts and how are these impacts distributed among disadvantaged communities? The US Midwest, “America’s Breadbasket,” is especially tan<em>till</em>izing in terms of environmental degradation due to farming.<sup class="footnote-ref"><a href="#fn2" id="fnref2">2</a></sup></p>
+<p>In anticipation for this lab, we reviewed the <a href="https://soilsrevealed.org/explore?state=eyJtYXAiOnsidmlld3BvcnQiOnsiem9vbSI6NS4wMzkzNTA4MzgwMTAwNjksImxhdGl0dWRlIjo0My45MzkyOTA0NDc1ODExMiwibG9uZ2l0dWRlIjotOTEuNDQyNjUwMDAwMDAzNzR9LCJiYXNlbWFwIjoibGlnaHQiLCJiYXNlbWFwUGFyYW1zIjpudWxsLCJyb2FkcyI6ZmFsc2UsImxhYmVscyI6ZmFsc2UsImJvdW5kYXJpZXMiOnsiaWQiOiJwb2xpdGljYWwtYm91bmRhcmllcyJ9LCJsYXllcnMiOnsic29jLXN0b2NrIjp7InZpc2libGUiOnRydWUsIm9wYWNpdHkiOjEsIm9yZGVyIjowLCJ0eXBlIjoiaGlzdG9yaWMiLCJtb2RlIjoiY2hhbmdlIiwiZGVwdGgiOiIwIiwicGVyaW9kIjoiaGlzdG9yaWMiLCJzY2VuYXJpbyI6IjEwIiwieWVhciI6IjIwMzgiLCJ5ZWFyMSI6MjAwMCwieWVhcjIiOjIwMTh9fX0sImFuYWx5c2lzIjp7ImFyZWFJbnRlcmVzdCI6eyJpZCI6MTAyMywibmFtZSI6Iklvd2EiLCJsZXZlbCI6MSwicGFyZW50SWQiOjcsInBhcmVudE5hbWUiOiJVbml0ZWQgU3RhdGVzIiwiYmJveCI6W1stOTYuNjM1Nyw0MC4zNzQ1XSxbLTkwLjEzOTMsNDMuNTA0N11dfSwiY29tcGFyZUFyZWFJbnRlcmVzdCI6bnVsbH19">Soils Reveal Project for soil carbon loss in Iowa</a>. These maps display soil carbon losses due to land use practices. Industrial agricultural practices such as tilling and reliance on heavy use of fertilizer and pesticide have resulted in a loss of carbon storage in the soil and its release into the atmosphere where it contributes to planetary warming. Carbon emissions are further increased due to the shift from production of food intended directly for human consumption and feed for livestock and industrial food products such as corn syrup and other by-products of corn including ethanol.</p>
+<p>These exercises are intended to allow you to use various data layers to analyze and visualize these issues in a <strong>GIS (Geographic Information System)</strong> using ArcGIS Pro.</p>
+<p>Some initial guiding questions are:</p>
+<ol>
+<li>What evidence do we see that industrial agriculture leads to adverse environmental impacts such as reduced soil carbon storage and declines in surface water quality? Do crop types and farm sizes differ?</li>
+<li>Where are the industrial food processing facilities (concentrated animal feeding operations (CAFOs) located? Do these locations coincide with environmental justice communities?</li>
+</ol>
+<p>The aspirations for this tutorial is to introduce you to</p>
+<dl>
+<dt>GIS</dt>
+<dd>Geographic Information System, a framework to create, manage, analyze, and visualize data that have a geographic component</dd>
+<dt>spatial analysis</dt>
+<dd>an exploratory process to quantify an observed pattern and the underlying processes that created that pattern</dd>
+<dt>how all maps lie</dt>
+<dd>from critically acclaimed <em>How to Lie with Maps</em> by Mark Monmonier, maps tell spatial narratives that support a perspective, therefore we need to be conscientious of the data and the interpretation and representation of the information</dd>
+</dl>
+<h2 id="how-to-use-this-tutorial">How to Use This Tutorial</h2>
+<p><mark>This</mark> is something in the ArcGIS Pro user interface<br>
+<mark><em>Text &gt;&gt; like &gt;&gt; this</em></mark> directs you through menus in sequence<br>
+<em>This</em> refers to data layer</p>
+<ul>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> This is a learning objective/skill to accomplish</li>
+</ul>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>Revised from description written by Denise Lello <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>Evan A. Thaler et al., “<a href="https://doi.org/10.1029/2021EF002396">Rates of Historical Anthropogenic Soil Erosion in the Midwestern United States</a>” <em>Earth’s Future</em> 10, no. 3 (2022). <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+    </div>
+  </div>
+</body>
+
+</html>
