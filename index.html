@@ -21,6 +21,11 @@
 <li><a href="#quick-start-in-arcgis-pro">Quick Start in ArcGIS Pro</a></li>
   <ul>
     <li><a href="#accessing-arcgis-pro">Accessing ArcGIS Pro</a></li>
+    <li><a href="#open-a-new-map">Open a New Map</a></li>
+  </ul>
+<li><a href="#data">Data</a></li>
+  <ul>
+    <li><a href="#downloading-the-data">Downloading the Data</a></li>
   </ul>
 </ul>
 </li>
@@ -52,12 +57,6 @@
 <dd>from critically acclaimed <em>How to Lie with Maps</em> by Mark Monmonier, maps tell spatial narratives that support a perspective, therefore we need to be conscientious of the data and the interpretation and representation of the information</dd>
 </dl>
 <h2 id="how-to-use-this-tutorial">How to Use This Tutorial</h2>
-<p><strong>This</strong> is something in the ArcGIS Pro user interface<br>
-<mark><em>Text &gt;&gt; like &gt;&gt; this</em></mark> directs you through menus in sequence<br>
-<em>This</em> refers to data layer</p>
-<ul>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> This is a learning objective/skill to accomplish</li>
-</ul>
 <p>
   <div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #31708f; background-color: #d9edf7; border-color: #bce8f1;"><i class="material-icons">info_outline</i>
 This provides additional information that helps contextualize what you're doing.
@@ -68,6 +67,80 @@ This is a tip/trick in ArcGIS Pro to try if you're feeling zesty!
   <div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #8a6d3b;; background-color: #fcf8e3; border-color: #faebcc;"><i class="material-icons">warning</i>
 This is a cautionary tale.
   </div>
+<h2 id="data">Data</h2>
+<p>A spatial data layer is geographic data that serve as the building blocks of your maps and analysis, and you choose the layers to “interact” with each other to form new layers that would answer your spatial question.</p>
+<p><img src="http://drive.google.com/uc?export=view&amp;id=1FRJGwITWLSgD70UGqlwoL31C8cZJ5wxG" alt="enter image description here" width="350"><sup class="footnote-ref"><a href="#fn3" id="fnref3">3</a></sup></p>
+<h3 id="downloading-the-data">Downloading the Data</h3>
+<ol>
+<li>On the Windows taskbar, go to <em>File Explorer</em> <img src="http://drive.google.com/uc?export=view&amp;id=11np7QN2UDY4VcM8fB7SEJJQ78MJGGUnX" alt="enter image description here" width="35"> &gt;&gt; <em>This PC</em> &gt;&gt; <em>GIS Data (Q:)</em>.</li>
+<li>Click on the <em>Classes</em> folder &gt;&gt; <em>ENV201_202</em> &gt;&gt; click into <em>Spring2022</em>. Copy and paste the <em>FarminginIA_ExerciseData</em> folder into your <em>GIS Home (J:)</em> folder.</li>
+</ol>
+<p><img src="http://drive.google.com/uc?export=view&amp;id=12IsL9viX39NcVuwOso7Bd07WqMy_TqwB" alt="enter image description here"></p>
+<p>The datasets we’re using for these labs come from a variety of <a href="https://geoawesomeness.com/what-is-authoritative-geospatial-data/#:~:text=In%20the%20geospatial%20context,%20the,property%20boundaries,%20and%20permit%20applications.">authoritative sources</a>. Please review the following table, especially <a href="https://www.fgdc.gov/metadata#:~:text=Metadata%20is%20information%20about%20data,other%20location-based%20data%20resources.">metadata</a> associated with each layer that will help you decipher the information.</p>
+
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>Layer Name</th>
+<th>Type of Data</th>
+<th>Source &amp; Metadata</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Animal feeding facilities</td>
+<td>animal_feeding_operations.shp</td>
+<td>vector - points</td>
+<td><a href="https://geodata.iowa.gov/documents/iowadnr::animal-feeding-operations-download/about">Iowa Geospatial Data/Iowa Department of Natural Resources</a></td>
+</tr>
+<tr>
+<td>EJScreen (National)</td>
+<td>EJSREEN_Full.shp</td>
+<td>vector - polygons</td>
+<td><a href="https://www.epa.gov/ejscreen/download-ejscreen-data">EPA</a></td>
+</tr>
+<tr>
+<td>Agricultural land use by field</td>
+<td>IowaFieldBoundaries2019.shp</td>
+<td>vector - polygons</td>
+<td><a href="https://geodata.iowa.gov/documents/iowa::agricultural-land-use-by-field-iowa-2010-2019-acpf/about">Iowa Geospatial Data</a></td>
+</tr>
+<tr>
+<td>County boundaries</td>
+<td>IowaCounties.shp</td>
+<td>vector - polygons</td>
+<td><a href="https://geodata.iowa.gov/datasets/iowa::iowa-county-boundaries/about">Iowa Geospatial Data</a></td>
+</tr>
+<tr>
+<td>Private wells</td>
+<td>Private_Well_Facilities.shp</td>
+<td>vector - points</td>
+<td><a href="https://geodata.iowa.gov/datasets/iowadnr::private-well-facilities/about">Iowa Geospatial Data/Iowa Department of Natural Resources</a></td>
+</tr>
+<tr>
+<td>Nitrate testing in private well water by county in 2010 &amp; 2020</td>
+<td>Nitrate_County2010.csv; Nitrate County2020.csv</td>
+<td>tabular</td>
+<td><a href="https://tracking.idph.iowa.gov/Environment/Private-Well-Water/Nitrate-Testing-Data">Iowa Public Health Tracking Portal</a></td>
+</tr>
+<tr>
+<td>Soil organic carbon on croplands</td>
+<td>soc_t1_30cm.tif</td>
+<td>raster</td>
+<td><a href="https://ciat.cgiar.org/global-soil-carbon/">CIAT (International Center for Tropical Agriculture)</a></td>
+</tr>
+<tr>
+<td>Potential soil organic carbon on croplands after 20 years medium scenario</td>
+<td>soc_t2_me.tif</td>
+<td>raster</td>
+<td><a href="https://ciat.cgiar.org/global-soil-carbon/">CIAT</a></td>
+</tr>
+</tbody>
+</table><p>Other data that were used to supplement the above layers:</p>
+<ul>
+<li>Land use/land cover cropland data for Iowa, from <a href="https://datagateway.nrcs.usda.gov/GDGHome.aspx">USDA NRCS</a></li>
+</ul>
 <h2 id="quick-start-in-arcgis-pro">Quick Start in ArcGIS Pro</h2>
 <h3 id="accessing-arcgis-pro">Accessing ArcGIS Pro</h3>
 <ol>
@@ -92,6 +165,8 @@ This is a cautionary tale.
 <li id="fn1" class="footnote-item"><p>Revised from description written by Denise Lello <a href="#fnref1" class="footnote-backref">↩︎</a></p>
 </li>
 <li id="fn2" class="footnote-item"><p>Evan A. Thaler et al., “<a href="https://doi.org/10.1029/2021EF002396">Rates of Historical Anthropogenic Soil Erosion in the Midwestern United States</a>” <em>Earth’s Future</em> 10, no. 3 (2022). <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p>Image source: USGS <a href="#fnref3" class="footnote-backref">↩︎</a></p>
 </li>
 </ol>
 </section>
