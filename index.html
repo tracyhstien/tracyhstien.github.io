@@ -70,16 +70,16 @@ This is a cautionary tale.
   </div>
 <h2 id="data">Data</h2>
 <p>A spatial data layer is geographic data that serve as the building blocks of your maps and analysis, and you choose the layers to “interact” with each other to form new layers that would answer your spatial question.</p>
-<p><img src="http://drive.google.com/uc?export=view&amp;id=1FRJGwITWLSgD70UGqlwoL31C8cZJ5wxG" alt="enter image description here" width="350"><sup class="footnote-ref"><a href="#fn3" id="fnref3">3</a></sup></p>
+<p><img src="http://drive.google.com/uc?export=view&amp;id=1FRJGwITWLSgD70UGqlwoL31C8cZJ5wxG" alt="GIS data layers" width="350"><sup class="footnote-ref"><a href="#fn3" id="fnref3">3</a></sup></p>
 <h3 id="downloading-the-data">Downloading the Data</h3>
 <ol>
-<li>On the Windows taskbar, go to <em>File Explorer</em> <img src="http://drive.google.com/uc?export=view&amp;id=11np7QN2UDY4VcM8fB7SEJJQ78MJGGUnX" alt="enter image description here" width="35"> &gt;&gt; <em>This PC</em> &gt;&gt; <em>GIS Data (Q:)</em>.</li>
+<li>On the Windows taskbar, go to <em>File Explorer</em> <i class="material-icons">folder</i> &gt;&gt; <em>This PC</em> &gt;&gt; <em>GIS Data (Q:)</em>.</li>
 <li>Click on the <em>Classes</em> folder &gt;&gt; <em>ENV201_202</em> &gt;&gt; click into <em>Spring2022</em>. Copy and paste the <em>FarminginIA_ExerciseData</em> folder into your <em>GIS Home (J:)</em> folder.</li>
 </ol>
 <div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #31708f; background-color: #d9edf7; border-color: #bce8f1;"><i class="material-icons">info_outline</i>
 If you don't see a GIS Data (Q:) or GIS Home(J:) in <em>This PC</em>, click on the <em>Computer</em> tab at the top of the window >> <em>Map Network Drive</em>. Enter <code>\\bass-nas\gis\gisdata</code> for Q:/ and <code>\\bass-nas\gis\gishome</code> for J:/
   </div>
-<p><img src="http://drive.google.com/uc?export=view&amp;id=12IsL9viX39NcVuwOso7Bd07WqMy_TqwB" alt="enter image description here"></p>
+<p><img src="http://drive.google.com/uc?export=view&amp;id=12IsL9viX39NcVuwOso7Bd07WqMy_TqwB" alt="Copy and paste exercise data from Q: to J:"></p>
 <p>The datasets we’re using for these labs come from a variety of <a href="https://geoawesomeness.com/what-is-authoritative-geospatial-data/#:~:text=In%20the%20geospatial%20context,%20the,property%20boundaries,%20and%20permit%20applications.">authoritative sources</a>. Please review the following table, especially <a href="https://www.fgdc.gov/metadata#:~:text=Metadata%20is%20information%20about%20data,other%20location-based%20data%20resources.">metadata</a> associated with each layer that will help you decipher the information.</p>
 
 <table>
@@ -149,26 +149,26 @@ If you don't see a GIS Data (Q:) or GIS Home(J:) in <em>This PC</em>, click on t
 <h2 id="quick-start-in-arcgis-pro">Quick Start in ArcGIS Pro</h2>
 <h3 id="accessing-arcgis-pro">Accessing ArcGIS Pro</h3>
 <ol>
-<li>In the Windows taskbar, search for “ArcGIS Pro” <img src="http://drive.google.com/uc?export=view&amp;id=1CtyW6IlDfN7_szastH7aELBN7vAoJSii" alt="Alt" width="33"> and launch the program.</li>
+<li>In the Windows taskbar, search for “ArcGIS Pro” <img src="http://drive.google.com/uc?export=view&amp;id=1CtyW6IlDfN7_szastH7aELBN7vAoJSii" alt="ArcGIS Pro logo" width="33"> and launch the program.</li>
 <li>On the login page, click on <strong>Your ArcGIS Organization’s URL</strong>, and type in <code>smithcollege</code>; click on <strong>Smith College Spatial Analysis Lab</strong>, then use your credentials</li>
 </ol>
-<p><img src="http://drive.google.com/uc?export=view&amp;id=1rtCDOaBuJ-qpsyg5ujp43Sl3vudraPqg" alt="Alt"></p>
+<p><img src="http://drive.google.com/uc?export=view&amp;id=1rtCDOaBuJ-qpsyg5ujp43Sl3vudraPqg" alt="ArcGIS Pro enterprise sign-on"></p>
 <h3 id="create-a-new-map">Create a New Map</h3>
 <ol>
 <li>Under <strong>New</strong>, click <strong>Map</strong><br>
-<img src="http://drive.google.com/uc?export=view&amp;id=1GYungcAixFewJXxXKKdwS_QC7PwJjFU9" alt="enter image description here" width="250"></li>
+<img src="http://drive.google.com/uc?export=view&amp;id=1GYungcAixFewJXxXKKdwS_QC7PwJjFU9" alt="open new map" width="250"></li>
 <li>When prompted to <strong>Create a New Project</strong>:
 <ul>
 <li>Name your project <code>FarminginIA_yourinitials</code></li>
-<li>Specify the save location to your J:/ folder by clicking on the folder icon <img src="http://drive.google.com/uc?export=view&amp;id=1SQy9wvEy7rIKUaLLD4ng5A9kQYrGq5uV" alt="enter image description here" width="30"> &gt;&gt; <em>This PC</em>, click on <em>J:/</em> then <strong>OK</strong>.</li>
+<li>Specify the save location to your J:/ folder by clicking on the folder icon <i class="material-icons">folder_open</i> &gt;&gt; <em>This PC</em>, click on <em>J:/</em> then <strong>OK</strong>.</li>
 </ul>
 </li>
 </ol>
-<p><img src="http://drive.google.com/uc?export=view&amp;id=1HCoQKUm2e8CvfjiyXn9Ps1RY7wBzZT3M" alt="enter image description here"></p>
+<p><img src="http://drive.google.com/uc?export=view&amp;id=1HCoQKUm2e8CvfjiyXn9Ps1RY7wBzZT3M" alt="create a new project"></p>
 <h3 id="arcgis-pro-interface">ArcGIS Pro Interface</h3>
 <p>Watch this brief orientation to the interface:</p>
  <iframe width="850" height="480" src="https://www.youtube.com/embed/gx0NgBpOGFQ" title="YouTube video player" allowfullscreen=""></iframe>
-<p><img src="http://drive.google.com/uc?export=view&amp;id=1r8Cw0Dxo4OJo4liR9DH-EvluET3r8HuZ" alt=""></p>
+<p><img src="http://drive.google.com/uc?export=view&amp;id=1r8Cw0Dxo4OJo4liR9DH-EvluET3r8HuZ" alt="ArcGIS Pro interface guide"></p>
 <div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #8a6d3b;; background-color: #fcf8e3; border-color: #faebcc;"><i class="material-icons">warning</i>
 Save <i class="material-icons">save</i> often throughout.
   </div>
