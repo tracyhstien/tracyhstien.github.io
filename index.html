@@ -28,6 +28,17 @@
     <li><a href="#create-a-new-map">Create a New Map</a></li>
     <li><a href="#arcgis-pro-interface">ArcGIS Pro Interface</a></li>
   </ul>
+<li><a href="#cafos-and-ej-communities">CAFOs and EJ Communities</a></li>
+  <ul>
+    <li><a href="#problem-statement--rationale">Problem Statement and Rationale</a></li>
+    <li><a href="#add-data-to-your-map">Add Data to Your Map</a></li>
+    <li><a href="#query-data">Query Data</a></li>
+    <li><a href="#symbolizing-data">Symbolizing Data</a></li>
+      <ul>
+        <li><a href="#approach-1-choropleth-map-using-a-single-variable">Approach #1: Choropleth Map Using a Single Variable</a></li>
+        <li><a href="#approach-2-bivariate-choropleth-map">Approach #2: Bivariate Choropleth Map</a></li>
+      </ul>
+  </ul>
 </ul>
 </li>
 </ul>
@@ -172,6 +183,108 @@ If you don't see a GIS Data (Q:) or GIS Home(J:) in <em>This PC</em>, click on t
 <div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #8a6d3b;; background-color: #fcf8e3; border-color: #faebcc;"><i class="material-icons">warning</i>
 Save <i class="material-icons">save</i> often throughout.
   </div>
+<h2 id="cafos-and-ej-communities">CAFOs and EJ Communities</h2>
+<h3 id="problem-statement--rationale">Problem Statement &amp; Rationale</h3>
+<p>How can we illustrate the ways in which industrial food processing, such as concentrated animal feeding operations (CAFOs), place additional burdens on environmental justice communities?</p>
+<p>To contextualize our workflow, we need to define and propose our criteria:</p>
+<dl>
+<dt>EJ communities</dt>
+<dd>Under Executive Order 12898, within the environmental justice framework, socially vulnerable communities are low-income and minority.<sup class="footnote-ref"><a href="#fn4" id="fnref4">4</a></sup> EJ communities are census block groups.</dd>
+<dt>Living 3 miles from a CAFO increases respiratory health issues</dt>
+<dd><a href="https://www.sciencedirect.com/science/article/pii/S0160412018320750">This study</a> suggests: “residential proximity to a CAFO was associated with reduced lung function and self-reported asthma at a distance within 3-4 miles.”</dd>
+</dl>
+<p>Our workflow:</p>
+<ul>
+<li>Use the EJScreen layer to show where census block groups that are both low-income and minority</li>
+<li>Analyze the animal feeding operations layer to delineate areas that are within 3 miles</li>
+<li>Use the areas that are within 3 miles from a CAFO to find which EJ communities are within</li>
+</ul>
+<h3 id="add-data-to-your-map">Add Data to Your Map</h3>
+<ol>
+<li>On the right-side of the entire interface, click on the <strong>Catalog</strong> pane tab &gt;&gt; right-click on <strong>Folders</strong> &gt;&gt; <strong>Add Folder Connection</strong>
+<ul>
+<li>Navigate to <em>This PC</em> &gt;&gt; <em>GIS Home (J:)</em> &gt;&gt; OK</li>
+</ul>
+</li>
+<li>Double-click on <strong>Folders</strong> to expand, and you will see your GIS Home (J:) folder. Expand the J: folder to see the <em>FarminginIA_ExerciseData</em> folder we copied earlier.</li>
+<div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #3c763d; background-color: #dff0d8; border-color: #d6e9c6;"><i class="material-icons">lightbulb_outline</i>
+If you recieve an error: "Unable to Access Network Drive." Open Windows File Explorer, click and drag & drop the J: folder into the ArcGIS Pro Catalog pane.
+  </div>
+<li>When you open the FarminginIA_ExerciseData folder, you will see all the data layers for the tutorial</li>
+<li>To add a data layer to the map, click on <em>EJSCREEN_Full.shp</em> and drap and drop into the map
+<ul>
+<li>On the left <strong>Contents</strong> pane, you will see the EJSCREEN_Full layer</li>
+</ul>
+</li>
+<div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #3c763d; background-color: #dff0d8; border-color: #d6e9c6;"><i class="material-icons">lightbulb_outline</i>
+Check/uncheck thee box left to the layer to turn on/off the visibility.
+  </div>
+</ol>
+<h3 id="query-data">Query Data</h3>
+<p>As you can see, the EJScreen data are of the contiguous US and Alaska, but we want to focus on Iowa. So, we want to create a subset of the EJScreen layer that is of Iowa.</p>
+<ol>
+<li>In <strong>Contents</strong>, right-click on the <em>EJSCREEN_Full</em> layer, and find <strong>Properties</strong> at the bottom of the drop-down</li>
+<li>Under the <strong>Definition Query</strong> tab &gt;&gt; <strong>+ New definition query</strong>
+<ul>
+<li>The expression is: Where <code>STATE_NAME</code> is equal to <code>Iowa</code>. Click <strong>Apply</strong> &gt;&gt; <strong>OK</strong></li>
+</ul>
+</li>
+<li>In <strong>Contents</strong>, with <em>EJSCREEN_Full</em> layer selected, click once to rename the layer to <code>EJSCREEN_Iowa</code></li>
+</ol>
+<h3 id="symbolizing-data">Symbolizing Data</h3>
+<p>To show the EJ communities in Iowa, we need to show where the census block groups are both low-income and minority. We will take two different approaches and consider how effective each are.</p>
+<h4 id="approach-1-choropleth-map-using-a-single-variable">Approach #1: Choropleth Map Using a Single Variable</h4>
+<p>The term “choropleth” comes from Greek “choro” (area) and “plethos” (multitude). A choropleth map thus uses a color gradient to show quantities over a geographic area.</p>
+<p>This means we should choose one variable depicted within the EJScreen data to apply this <strong>graduated symbology</strong>.</p>
+<ol>
+<li>Right-click on <em>EJSCREEN_Iowa</em>, then <strong>Open Attribute Table</strong>, scroll across to examine what information is available in this layer</li>
+<div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #31708f; background-color: #d9edf7; border-color: #bce8f1;"><i class="material-icons">info_outline</i>
+As you scroll across, the columns (referred to as “fields” in GIS) are plenty and with cryptic names like “ACSTOTPOP.” By referencing the EJSCREEN Technical Documentation, you can figure out what each field means. (ACSTOTPOP means American Community Survey Total Population)
+  </div>
+<li>We will use “P_VULEOPCT”, which is the numeric Demographic Index = (% minority + % low-income)/2<sup class="footnote-ref"><a href="#fn5" id="fnref5">5</a></sup></li>
+<li>Right-click on <em>EJSCREEN_Iowa</em> &gt;&gt; <strong>Symbology</strong>. This will prompt the Symbology pane to open on the right side.
+<ul>
+<li>Under <strong>Primary symbology</strong>, choose <strong>Graduated Colors</strong></li>
+<li>Next under <strong>Field</strong>, select “P_VULEOPCT”</li>
+<li>Under <strong>Color Scheme</strong>, choose “Oranges (continuous)”</li>
+</ul>
+</li>
+</ol>
+<div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #31708f; background-color: #d9edf7; border-color: #bce8f1;"><i class="material-icons">info_outline</i>
+Because we're depicting one variable, best practice is to use a single color gradient to represent that intuitively.
+  </div>
+<p>This map shows that, under the environmental justice framework, the census block groups in Iowa from less socially vulnerable (light orange) to more vulnerable (deep orange).</p>
+<div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #8a6d3b;; background-color: #fcf8e3; border-color: #faebcc;"><i class="material-icons">warning</i>
+Save <i class="material-icons">save</i> your map.
+  </div>
+<h4 id="approach-2-bivariate-choropleth-map">Approach #2: Bivariate Choropleth Map</h4>
+<p>Socioeconomic status (like income) is intricately intertwined with certain race and ethnicity (minority)<sup class="footnote-ref"><a href="#fn6" id="fnref6">6</a></sup> – so we would expect that the two variables, low-income and minority, are somewhat related. This is why we can use bivariate mapping to show where the two variables are in agreement or not.</p>
+<ol>
+<li>Right-click on <em>EJSCREEN_Iowa</em> &gt;&gt; <strong>Copy</strong>, then immediately above (still in <strong>Contents</strong>), under <strong>Map</strong>, right-click to <strong>Paste</strong>
+<ul>
+<li>Rename this layer <code>EJSCREEN_Full_Bivariate</code></li>
+</ul>
+</li>
+<li>Open Symbology for <em>EJSCREEN_Full_Bivariate</em>
+<ul>
+<li>Under <strong>Primary symbology</strong>, choose <strong>Bivariate colors</strong></li>
+<li>For Field 1, choose “P_MINORPCT” and Field 2, “P_LWINPCT”</li>
+</ul>
+</li>
+</ol>
+<p>This map shows where minority population (% of total population within the census block group) are in the high percentile compared to the rest of the country (pink), where low income population (%) are in the high percentile (blue), and where there are least minority + low-income (grey) and most minority + low-income (purple).</p>
+<p><img src="http://drive.google.com/uc?export=view&amp;id=1TOwdhUsyU__b_LWU-eU0AQoDg_yQvhDV" alt="Interpretation of bivariate symbology"></p>
+<h4 id="compare-the-two-symbology-approaches">Compare the Two Symbology Approaches</h4>
+<ol>
+<li>At the very top of the interface, click into the <strong>Feature Layer</strong> contextual tab set &gt;&gt; <strong>Appearance</strong> &gt;&gt; <strong>Swipe</strong></li>
+<li>Move down to the map view, and an arrow will appear, click anywhere and drag up &amp; down to compare the two approaches to visualize EJ communities in Iowa</li>
+</ol>
+<blockquote>
+<p>Which approach do you think is more effective? Why?</p>
+</blockquote>
+<div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #8a6d3b;; background-color: #fcf8e3; border-color: #faebcc;"><i class="material-icons">warning</i>
+Save <i class="material-icons">save</i> your map.
+  </div>
 <h3 id="section"></h3>
 <hr class="footnotes-sep">
 <section class="footnotes">
@@ -181,6 +294,12 @@ Save <i class="material-icons">save</i> often throughout.
 <li id="fn2" class="footnote-item"><p>Evan A. Thaler et al., “<a href="https://doi.org/10.1029/2021EF002396">Rates of Historical Anthropogenic Soil Erosion in the Midwestern United States</a>” <em>Earth’s Future</em> 10, no. 3 (2022). <a href="#fnref2" class="footnote-backref">↩︎</a></p>
 </li>
 <li id="fn3" class="footnote-item"><p>Image source: USGS <a href="#fnref3" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn4" class="footnote-item"><p>p.20, <a href="https://www.epa.gov/sites/default/files/2021-04/documents/ejscreen_technical_document.pdf">EJSCREEN Technical Documentation</a> <a href="#fnref4" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn5" class="footnote-item"><p>p.21, EJSCREEN Technical Documentation <a href="#fnref5" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn6" class="footnote-item"><p>US Census Bureau, <a href="https://www.census.gov/library/stories/2020/09/poverty-rates-for-blacks-and-hispanics-reached-historic-lows-in-2019.html">Inequalities Persist Despite Decline in Poverty For All Major Race and Hispanic Origin Groups</a>, 2020 <a href="#fnref6" class="footnote-backref">↩︎</a></p>
 </li>
 </ol>
 </section>
