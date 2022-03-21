@@ -40,6 +40,14 @@
         <li><a href="#compare-the-two-symbology-approaches">5.4.3 Compare the Two Symbology Approaches</a></li>
       </ul>
   </ul>
+  <ul>
+    <li><a href="#create-buffers">5.5 Create Buffers</a></li>
+    <li><a href="#select-features-by-attribute-and-location">5.6 Select Features By...</a></li>
+      <ul>
+        <li><a href="#select-by-attributes">5.6.1 Select by Attributes</a></li>
+        <li><a href="#select-by-location">5.6.2 Select by Location</a></li>
+      </ul>
+  </ul>
 </ul>
 </li>
 </ul>
@@ -295,6 +303,84 @@ EJSCREEN uses percentile to contextualize the value within the rest of the natio
 <div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #8a6d3b;; background-color: #fcf8e3; border-color: #faebcc;"><i class="material-icons">warning</i>
 Save <i class="material-icons">save</i> your map.
   </div>
+<h3 id="create-buffers">Create Buffers</h3>
+<p>Next in our workflow is to delineate areas that are within 3 miles from each locations of animal feeding operations. This process is referred to as “buffering” in spatial analysis.</p>
+<ol>
+<li>Add the <em>animal_feeding_operations</em> layer to your map</li>
+<li>On the top of the interface, click on the <strong>Analysis</strong> tab &gt;&gt; click on the <strong>Buffer</strong> tool beneath</li>
+<li>This prompts the Buffer tool pane to the right. If not specified below, keep the default:
+<ul>
+<li><strong>Input Features</strong>: select <em>animal_feeling_operations</em></li>
+<li><strong>Output Feature Class</strong>: click on the folder icon, designated your <em>J:/FarminginIA_ExerciseData</em> folder to be the workspace, and name your layer <code>CAFO_Buffer3mile.shp</code></li>
+<li><strong>Distance</strong>: <code>3</code> Miles</li>
+<li><strong>Method</strong>: Geodesic</li>
+<li>Click <strong>Run</strong></li>
+</ul>
+</li>
+<li>Turn off the <em>animal_feeding_operations</em> and <em>EJSCREE_Iowa_Bivariate</em> layers</li>
+<li>With the CAFO_Buffer3mile layer selected, go to the <strong>Appearance</strong> contextual tab set&gt;&gt; under <strong>Effects</strong>, set a <strong>Transparency</strong> of 35%</li>
+</ol>
+<h3 id="select-features-by-attribute-and-location">Select Features by Attribute and Location</h3>
+<p>By having a semi-transparent 3 mile buffer zone layer displayed on top of the EJ communities layer, we can start to see where EJ communities fall within 3-miles of a CAFO. However, the map is visually busy and it’s unwieldy to manually pick out these particular communities. We can automate this process by:</p>
+<ul>
+<li>Selecting the EJ communities that are considered the highest percentile based on our five classes, any that are &gt; 67.5</li>
+<li>Using the 3 mile CAFO buffer zones, to find which above EJ communities fall within</li>
+</ul>
+<h4 id="select-by-attributes">Select by Attributes</h4>
+<p>To select the highest percentile class of EJ communities, we are using the attribute information associated to make that query. Therefore we use <strong>Select by Attributes</strong>.</p>
+<ol>
+<li>Click on the <em>EJSCREEN_Iowa</em> layer. On the top of the interface, under <strong>Map</strong> tab &gt;&gt; <strong>Select by Attributes</strong>
+<ul>
+<li><strong>Input Rows</strong>: EJSCREEN_Iowa</li>
+<li><strong>Selection Type</strong>: New selection</li>
+<li><strong>Add New expression</strong>: Where <code>P_VULEOPCT</code> is greater than <code>67.5</code></li>
+<li>Click <strong>OK</strong></li>
+</ul>
+</li>
+<li>Right-click on the <em>EJSCREEN_Iowa</em> layer &gt;&gt; <strong>Open Attribute Table</strong></li>
+</ol>
+<blockquote>
+<p>Look at the bottom of the table. How many EJ communities are in the high vulnerability class?</p>
+</blockquote>
+<ol start="3">
+<li>We will make a temporary layer by right-clicking the <em>EJSCREEN_Iowa</em> layer &gt;&gt; <strong>Selection</strong> &gt;&gt; <strong>Make Layer from Selected Features</strong>. Rename this layer <code>EJSCREEN_Iowa_HighVul</code></li>
+<li>On top in the <strong>Selection</strong> group, click <strong>Clear</strong> to clear the selection (features that are outlined in neon blue)</li>
+<li>Turn off the <em>EJSCREEN_Iowa</em> layer</li>
+</ol>
+<h4 id="select-by-location">Select by Location</h4>
+<p>To find which of the high EJ communities also fall within the 3-mile CAFO buffer zone, we are using the spatial information to make this query, so we use <strong>Select by Location</strong>.</p>
+<ol>
+<li>Click on <strong>Select by Location</strong>
+<ul>
+<li><strong>Input Features</strong> (the layer to select FROM) : EJSCREEN_Iowa_HighVul</li>
+<li><strong>Relationship</strong>: Intersect</li>
+<li><strong>Selecting Features</strong>: CAFO_Buffer3mile</li>
+<li>Click <strong>OK</strong></li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>How many EJ communities are further impacted by adverse respiratory health issues associated with CAFOs?</p>
+</blockquote>
+<ol>
+<li>Make a new layer from this selection and rename it to <code>EJ_communities_with_3mileCAFO</code></li>
+<li>Change the <strong>Symbology</strong> of this layer
+<ul>
+<li>Under <strong>Primary symbology</strong>, choose <strong>Single Symbol</strong></li>
+<li>Click on the <strong>Symbol</strong> icon &gt;&gt; <strong>Properties</strong>, under <strong>Appearance</strong>, make the fill transparent and the outline color red, and outline width 1.5</li>
+</ul>
+</li>
+<li>In Contents, make only the following layers visible:
+<ul>
+<li><em>EJ_communities_with3mileCAFO</em></li>
+<li><em>EJSCREEN_Iowa_Bivariate</em></li>
+<li><em>EJSCREEN_Iowa</em></li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>Zoom in to urban cities like Des Moines or Cedar Rapids, then to rural cities in predominant agricultural districts like Storm Lake, and Swipe between the layers – what do you observe that can potentially be attributed further to rural/urban distinctions?</p>
+</blockquote>
 <h3 id="section"></h3>
 <hr class="footnotes-sep">
 <section class="footnotes">
