@@ -306,6 +306,9 @@ Save <i class="material-icons">save</i> your map.
 <h3 id="create-buffers">Create Buffers</h3>
 <p>Next in our workflow is to delineate areas that are within 3 miles from each locations of animal feeding operations. This process is referred to as “buffering” in spatial analysis.</p>
 <ol>
+<div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #31708f; background-color: #d9edf7; border-color: #bce8f1;"><i class="material-icons">info_outline</i>
+A buffer analysis creates a new data layer, that are buffer zons that have 3-mile radius around each CAFO. The features in this new layer represeent the areas that are impacted respiratory health wise.
+  </div>
 <li>Add the <em>animal_feeding_operations</em> layer to your map</li>
 <li>On the top of the interface, click on the <strong>Analysis</strong> tab &gt;&gt; click on the <strong>Buffer</strong> tool beneath</li>
 <li>This prompts the Buffer tool pane to the right. If not specified below, keep the default:
@@ -317,6 +320,9 @@ Save <i class="material-icons">save</i> your map.
 <li>Click <strong>Run</strong></li>
 </ul>
 </li>
+<div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #31708f; background-color: #d9edf7; border-color: #bce8f1;"><i class="material-icons">info_outline</i>
+Planar refers to straight-line Euclidean distance, whereas geodesic accounts for the curvature of earth.
+  </div>
 <li>Turn off the <em>animal_feeding_operations</em> and <em>EJSCREE_Iowa_Bivariate</em> layers</li>
 <li>With the CAFO_Buffer3mile layer selected, go to the <strong>Appearance</strong> contextual tab set&gt;&gt; under <strong>Effects</strong>, set a <strong>Transparency</strong> of 35%</li>
 </ol>
@@ -327,6 +333,9 @@ Save <i class="material-icons">save</i> your map.
 <p>By having a semi-transparent 3 mile buffer zone layer displayed on top of the EJ communities layer, we can start to see where EJ communities fall within 3-miles of a CAFO. However, the map is visually busy and it’s unwieldy to manually pick out these particular communities. We can automate this process by:</p>
 <ul>
 <li>Selecting the EJ communities that are considered the highest percentile based on our five classes, any that are &gt; 67.5</li>
+<div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #31708f; background-color: #d9edf7; border-color: #bce8f1;"><i class="material-icons">info_outline</i>
+We used Jenks Natural Breaks classification, which binned the data based on variance between each class (distinct breaks in the distribution of the data).
+  </div>
 <li>Using the 3 mile CAFO buffer zones, to find which above EJ communities fall within</li>
 </ul>
 <h4 id="select-by-attributes">Select by Attributes</h4>
