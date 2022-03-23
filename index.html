@@ -58,14 +58,14 @@
   <div class="stackedit__right">
     <div class="stackedit__html">
       <h1 id="analyzing-agricultural-outcomes-in-iowa">Analyzing Agricultural Outcomes in Iowa</h1>
-<p><em>By Tracy Tien, <a href="https://www.science.smith.edu/sal/">Smith College Spatial Analysis Lab</a> & Denise Lello</em></p>
+<p><em>By Tracy Tien, <a href="https://www.science.smith.edu/sal/">Smith College Spatial Analysis Lab</a> in consultation with Denise Lello</em></p>
 <h2 id="introduction">Introduction<sup class="footnote-ref"><a href="#fn1" id="fnref1">1</a></sup></h2>
 <p>In our explorations of the history of agricultural land use and its impacts on environmental and human health, we are reading about the changes to farming in the U.S. including the shift from smaller family farms that produced a variety of crops, to large industrial monocultures. This raises the question: What are the adverse environmental and cultural impacts and how are these impacts distributed among disadvantaged communities? The US Midwest, “America’s Breadbasket,” is especially tan<em>till</em>izing in terms of environmental degradation due to farming.<sup class="footnote-ref"><a href="#fn2" id="fnref2">2</a></sup></p>
 <p>In anticipation for this lab, we reviewed the <a href="https://soilsrevealed.org/explore?state=eyJtYXAiOnsidmlld3BvcnQiOnsiem9vbSI6NS4wMzkzNTA4MzgwMTAwNjksImxhdGl0dWRlIjo0My45MzkyOTA0NDc1ODExMiwibG9uZ2l0dWRlIjotOTEuNDQyNjUwMDAwMDAzNzR9LCJiYXNlbWFwIjoibGlnaHQiLCJiYXNlbWFwUGFyYW1zIjpudWxsLCJyb2FkcyI6ZmFsc2UsImxhYmVscyI6ZmFsc2UsImJvdW5kYXJpZXMiOnsiaWQiOiJwb2xpdGljYWwtYm91bmRhcmllcyJ9LCJsYXllcnMiOnsic29jLXN0b2NrIjp7InZpc2libGUiOnRydWUsIm9wYWNpdHkiOjEsIm9yZGVyIjowLCJ0eXBlIjoiaGlzdG9yaWMiLCJtb2RlIjoiY2hhbmdlIiwiZGVwdGgiOiIwIiwicGVyaW9kIjoiaGlzdG9yaWMiLCJzY2VuYXJpbyI6IjEwIiwieWVhciI6IjIwMzgiLCJ5ZWFyMSI6MjAwMCwieWVhcjIiOjIwMTh9fX0sImFuYWx5c2lzIjp7ImFyZWFJbnRlcmVzdCI6eyJpZCI6MTAyMywibmFtZSI6Iklvd2EiLCJsZXZlbCI6MSwicGFyZW50SWQiOjcsInBhcmVudE5hbWUiOiJVbml0ZWQgU3RhdGVzIiwiYmJveCI6W1stOTYuNjM1Nyw0MC4zNzQ1XSxbLTkwLjEzOTMsNDMuNTA0N11dfSwiY29tcGFyZUFyZWFJbnRlcmVzdCI6bnVsbH19">Soils Reveal Project for soil carbon loss in Iowa</a>. These maps display soil carbon losses due to land use practices. Industrial agricultural practices such as tilling and reliance on heavy use of fertilizer and pesticide have resulted in a loss of carbon storage in the soil and its release into the atmosphere where it contributes to planetary warming. Carbon emissions (not incorporatd in the Soils Revealed models) are further increased due to the shift from production of food intended directly for human consumption and feed for livestock and industrial food products such as corn syrup and other by-products of corn including ethanol.</p>
 <p>These exercises are intended to allow you to use various data layers to analyze and visualize these issues in a <strong>GIS (Geographic Information System)</strong> using ArcGIS Pro.</p>
 <p>Some of the large questions we would like to investigate, based on our course explanations are:</p>
 <ol>
-<li>Are, for example, factors such as crop type or farm size associated with different levels of impact on soil carbon storage or water quality?</li>
+<li>Are factors such as crop type or farm size associated with different levels of impact on soil carbon storage or water quality?</li>
 <li>Can we detect environmental justice issues in the sitings of concentrated animal feeding operations (CAFOs) </li>
 </ol>
 <h2 id="how-to-use-this-tutorial">How to Use This Tutorial</h2>
@@ -195,7 +195,7 @@ If you don't see a GIS Data (Q:) or GIS Home(J:) in <em>This PC</em>, click on t
 <p>To contextualize our workflow, we need to define and propose our criteria:</p>
 <dl>
 <dt>EJ communities</dt>
-<dd>Under Executive Order 12898, within the environmental justice framework, socially vulnerable communities are low-income and minority.<sup class="footnote-ref"><a href="#fn4" id="fnref4">4</a></sup> EJ communities are census block groups.</dd>
+<dd>Under Executive Order 12898, within the environmental justice framework, socially vulnerable communities are identified by the relative percents of low income and minority households, within them, the percentages of two factors averaged together.<sup class="footnote-ref"><a href="#fn4" id="fnref4">4</a></sup> The units for EJ communities are census block groups.</dd>
 <dt>Living 3 miles from a CAFO increases respiratory health issues</dt>
 <dd><a href="https://www.sciencedirect.com/science/article/pii/S0160412018320750">This study</a> suggests: “residential proximity to a CAFO was associated with reduced lung function and self-reported asthma at a distance within 3-4 miles.”</dd>
 </dl>
@@ -257,7 +257,7 @@ To zoom to the full extent of the layer you're working with, right-click >> Zoom
 <div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #31708f; background-color: #d9edf7; border-color: #bce8f1;"><i class="material-icons">info_outline</i>
 As you scroll across, the columns (referred to as “fields” in GIS) are plenty and with cryptic names like “ACSTOTPOP.” By referencing the EJSCREEN Technical Documentation, you can figure out what each field means. (ACSTOTPOP means American Community Survey Total Population)
   </div>
-<li>We will use “P_VULEOPCT”, which is the numeric Demographic Index = (% minority + % low-income)/2<sup class="footnote-ref"><a href="#fn5" id="fnref5">5</a></sup></li>
+<li>We will use “P_VULEOPCT”, which is the numeric percentile Demographic Index = (% minority + % low-income)/2<sup class="footnote-ref"><a href="#fn5" id="fnref5">5</a></sup></li>
 <li>Right-click on <em>EJSCREEN_Iowa</em> &gt;&gt; <strong>Symbology</strong>. This will prompt the Symbology pane to open on the right side.
 <ul>
 <li>Under <strong>Primary symbology</strong>, choose <strong>Graduated Colors</strong></li>
@@ -279,10 +279,10 @@ Save <i class="material-icons">save</i> your map.
 <ol>
 <li>Right-click on <em>EJSCREEN_Iowa</em> &gt;&gt; <strong>Copy</strong>, then immediately above (still in <strong>Contents</strong>), under <strong>Map</strong>, right-click to <strong>Paste</strong>
 <ul>
-<li>Rename this layer <code>EJSCREEN_Full_Bivariate</code></li>
+<li>Rename this layer <code>EJSCREEN_Iowa_Bivariate</code></li>
 </ul>
 </li>
-<li>Open Symbology for <em>EJSCREEN_Full_Bivariate</em>
+<li>Open Symbology for <em>EJSCREEN_Iowa_Bivariate</em>
 <ul>
 <li>Under <strong>Primary symbology</strong>, choose <strong>Bivariate colors</strong></li>
 <li>For Field 1, choose “P_MINORPCT” and Field 2, “P_LWINPCT”</li>
@@ -341,7 +341,7 @@ Save <i class="material-icons">save</i> your map.
 <div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #31708f; background-color: #d9edf7; border-color: #bce8f1;"><i class="material-icons">info_outline</i>
 We used Jenks Natural Breaks classification, which binned the data based on variance between each class (distinct breaks in the distribution of the data).
   </div>
-<li>Using the 3 mile CAFO buffer zones, to find which above EJ communities fall within</li>
+<li>Using the 3 mile CAFO buffer zones to determine which high EJ communities are within that radius</li>
 </ul>
 <h4 id="select-by-attributes">Select by Attributes</h4>
 <p>To select the highest percentile class of EJ communities, we are using the attribute information associated to make that query. Therefore we use <strong>Select by Attributes</strong>.</p>
