@@ -19,8 +19,11 @@
 <li><a href="#introduction">1. Introduction</a></li>
 <li><a href="#how-to-use-this-tutorial">2. How to Use This Tutorial</a></li>
 <li><a href="#data">3. Data</a></li>
+  <button id="aa1" class="tdropbtn" onclick="Tgl(this.id)" style="display:inline;">[+]</button>
+  <button id="paa1" class="tdropbtn" onclick="Tgl(this.id)" style="display:none;">[-]</button></li>
   <ul>
-    <li><a href="#downloading-the-data">3.1 Downloading the Data</a></li>
+    <div id="lvlaa1" class="tdropdown-content">
+      <li><a href="#downloading-the-data">3.1 Downloading the Data</a></li>
   </ul>
 <li><a href="#quick-start-in-arcgis-pro">4. Quick Start in ArcGIS Pro</a></li>
   <ul>
@@ -51,7 +54,42 @@
 </ul>
 </li>
 </ul>
+<script>
+  function Tgl(click_id) {
+    var x = document.getElementById(click_id);
+    var z = click_id.match(/\d+/)[0];
+    var y = click_id.slice(-3);
+    var w = document.getElementById(y);
+    var t = document.getElementById(`p${y}`);
 
+    /* If [+] is visible, make it invisible and display [-] - and vice versa*/
+    if (click_id.indexOf('p') >= 0) {
+      if (x.style.display === "none") {
+        x.style.display = "inline";
+        w.style.display = "none";
+      }
+      if (x.style.display === "inline") {
+        x.style.display = "none";
+        w.style.display = "inline";
+      }
+    } else {
+      if (x.style.display === "none") {
+        x.style.display = "inline";
+        t.style.display = "none";
+      }
+      if (x.style.display === "inline") {
+        x.style.display = "none";
+        t.style.display = "inline";
+      }
+    }
+    /*Toggle dropdown display onclick*/
+    document.getElementById(`lvl${y}`).classList.toggle("tshow");
+    /*Increment list spacing with each nest*/
+    var p = document.getElementById(`lvl${y}`);
+    p.style.left = (9 * z) + 'px';
+}
+
+</script>
 
     </div>
   </div>
