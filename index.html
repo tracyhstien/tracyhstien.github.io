@@ -515,6 +515,9 @@ and show the composition of crop type for each county</li>
 </li>
 <li>Once the geoprocessing finishes, the output table <em>TabulateCropType</em> will show up under <strong>Contents</strong>. Right-click to open the table. You will see that the same county has several records (rows) - each for a crop type, its area in acres, and the percentage that it takes up in the overall area of the county.</li>
 </ol>
+<div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #8a6d3b;; background-color: #fcf8e3; border-color: #faebcc;"><i class="material-icons">warning</i>
+Save <i class="material-icons">save</i> your map.
+  </div>
 <h3 id="pivot-table">6.4 Pivot Table</h3>
 <p>In order to visualize the composition of crop types within each county, we need the crop types as individual attributes that is associated to just one county. This is referred to as “flattening one-to-many relationships,” and we use <strong>Pivot Table</strong> to achieve the below:</p>
 <p><img src="http://drive.google.com/uc?export=view&amp;id=11Q1rYu749496Hc0Bv2JEG8H9O49NnEUA" alt="Pivot table"></p>
@@ -530,6 +533,9 @@ and show the composition of crop type for each county</li>
 </li>
 <li>Once the geoprocessing finishes, a new table <em>TabulateCropType_PivotTable</em> gets added to your <strong>Contents</strong>. Open the table to see the transposed results.</li>
 </ol>
+<div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #8a6d3b;; background-color: #fcf8e3; border-color: #faebcc;"><i class="material-icons">warning</i>
+Save <i class="material-icons">save</i> your map.
+  </div>
 <h3 id="join-field">6.5 Join Field</h3>
 <p>The crop type information we derived for each county is tabular, with no geometries associated with them. However, we do have geographic information in the table that is unique to each record: the county name. We also have the county geometries portrayed by the <em>IowaCounties</em> layer. To add the tabular data to the counties shapes, we use the county name that they both share.</p>
 <ol>
@@ -553,6 +559,9 @@ and show the composition of crop type for each county</li>
 </li>
 <li>Once the geoprocessing finishes, <strong>Open the Attribute Table</strong> for <em>IowaCounties</em> and you will see that the crop type attributes are added.</li>
 </ol>
+<div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #8a6d3b;; background-color: #fcf8e3; border-color: #faebcc;"><i class="material-icons">warning</i>
+Save <i class="material-icons">save</i> your map.
+  </div>
 <h3 id="chart-symbols">6.6 Chart Symbols</h3>
 <p>We can visualize the crop composition for each county using chart symbols.</p>
 <ol>
@@ -582,6 +591,9 @@ and show the composition of crop type for each county</li>
 </li>
 <li>In <strong>Contents</strong>, turn off all the other layers except for <em>IowaCounties</em></li>
 </ol>
+<div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #8a6d3b;; background-color: #fcf8e3; border-color: #faebcc;"><i class="material-icons">warning</i>
+Save <i class="material-icons">save</i> your map.
+  </div>
 <h3 id="raster-calculations">6.7 Raster Calculations</h3>
 <p>To quantify change in soil carbon, we need two data layers that represent two time periods: <em>soc_t1_30cm.tif</em> (current) and <em>soc_t2_me.tif</em> (future). These two layers are raster data (fields view) as opposed to vector data (discrete objects view) that we have been using so far. The values in each cell/pixel represent soil organic carbon in tons per hectare. Our goal here is to calculate the average change in soil carbon for each county, to see if the composition in crop type has an impact, i.e. less soil carbon in counties that have more commodity crop.</p>
 <ol>
@@ -597,6 +609,9 @@ and show the composition of crop type for each county</li>
 <li>Rename the new raster layer that gets created (<em>Minus_soc_t2_me.tif_soc_t1_30cm.tif</em>) to <code>Change in SOC</code></li>
 </ol>
 <p><img src="http://drive.google.com/uc?export=view&amp;id=1i0Zdve_lMxECHJuQkecPI560jMNAVE-X" alt="Crop type and SOC"></p>
+<div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #8a6d3b;; background-color: #fcf8e3; border-color: #faebcc;"><i class="material-icons">warning</i>
+Save <i class="material-icons">save</i> your map.
+  </div>
 <h3 id="section"></h3>
 <hr class="footnotes-sep">
 <section class="footnotes">
