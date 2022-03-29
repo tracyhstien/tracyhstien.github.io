@@ -48,6 +48,16 @@
         <li><a href="#select-by-location">5.6.2 Select by Location</a></li>
       </ul>
   </ul>
+ <li><a href="#environmental-degradation-due-to-agricultural-practices">6. Environmental Degradation due to Agricultural Practices</a></li>
+  <ul>
+    <li><a href="#problem-statement--rationale-1">6.1 Problem Statement and Rationale</a></li>
+    <li><a href="#insert-a-new-map-within-an-existing-project">6.2 Insert a New Map within an Existing Project</a></li>
+    <li><a href="#tabulate-intersection">6.3 Tabulate Intersection</a></li>
+    <li><a href="#pivot-table">6.4 Pivot Table</a></li>
+    <li><a href="#join-field">6.5 Join Field</a></li>
+    <li><a href="#chart-symbols">6.6 Chart Symbols</a></li>
+    <li><a href="#raster-calculations">6.7 Raster Calculations</a></li>
+   </ul>
 </ul>
 </li>
 </ul>
@@ -441,6 +451,152 @@ Save <i class="material-icons">save</i> your map.
 <div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #8a6d3b;; background-color: #fcf8e3; border-color: #faebcc;"><i class="material-icons">warning</i>
 Save <i class="material-icons">save</i> your map.
   </div>
+<h2 id="environmental-degradation-due-to-agricultural-practices">6. Environmental Degradation due to Agricultural Practices</h2>
+<h3 id="problem-statement--rationale-1">6.1 Problem Statement &amp; Rationale</h3>
+<p>What impacts do factors such as crop type or farm size have on soil carbon storage and water quality?</p>
+<p>To contextualize our workflow, we need to define and propose our criteria:</p>
+<dl>
+<dt>Crop type</dt>
+<dd>The <em>agricultural land use by field</em> layer is transformed with the predominant land use/land cover cropland data to distinguish the farm fields into four categories: (human) edible crop (e.g. sweet corn, pea), feed crop (e.g. triticale, alfalfa), non-agriculture (e.g. wetlands, forests), and other (e.g. clover.)</dd>
+<dt>Farm size</dt>
+<dd>We will categorize farm size into small, medium, and large based on acreage, using the same data classification scheme we used to bin the EJ community percentile last week: <a href="http://wiki.gis.com/wiki/index.php/Jenks_Natural_Breaks_Classification">Jenks Natural Breaks</a>.  This method emphasizes variance between classes (distinct breaks in the distribution of data.)</dd>
+<dt>Soil carbon change</dt>
+<dd>The <em>soil organic carbon on croplands</em> and <em>potential soil organic carbon on croplands after 20 years of medium scenario</em> layers are rasters, meaning the layers portray in each grid/pixel, the values of soil organic carbon in tons per hectare. Since we have two time periods - 2014 and 2034 - we can calculate the difference in soil carbon storage to quantify change over time. The future projection on potential SOC means that the higher the difference, there’s less potential loss.</dd>
+<dt>Water quality change</dt>
+<dd>Similar to soil carbon change, we need two time periods to demonstrate change in water quality. We will use nitrate testing results in private well water for 2010 and 2020. In particular, we’re looking at the percent change in elevated nitrate tests (&gt;= 10 mg/L). This means if the difference between the two is positive, the water quality became worse; while if the value is negative, the water quality improved.</dd>
+<dt>Unit of analysis</dt>
+<dd>The water quality data is reported at the county level. In order to make comparisons, our derived insights are <a href="http://wiki.gis.com/wiki/index.php/Aggregation">aggregated</a> to Iowa counties.</dd>
+</dl>
+<p>Our workflow:</p>
+<p>First, we’ll breakdown the problem statement into digestible parts as it contains multiple questions. We will start with the following: <em>Does crop type have an impact on soil carbon storage?</em> The processes below can then be replicated for any other combination (i.e. crop type vs. water quality,  farm size vs. SOC…etc.)</p>
+<ul>
+<li>Analyze the agricultural land use by (farm) fields layer to calculate<br>
+and show the composition of crop type for each county</li>
+<li>Create a new data layer that is the difference (the change) between the current and future soil organic carbon value by: Δ = t<sub>2</sub> - t<sub>1</sub></li>
+<li>Calculate the average (mean) change for each county</li>
+</ul>
+<h3 id="insert-a-new-map-within-an-existing-project">6.2 Insert a New Map within an Existing Project</h3>
+<ol>
+<li>
+<p>Navigate through  <em>File Explorer</em> &gt;&gt; <em>This PC</em> &gt;&gt; <em>GIS Home (J:/)</em>, to your <em>FarminginIA_yourinitials</em> folder. Double-click on the map project “FarminginIA_yourinitials.aprx”<br>
+<img src="http://drive.google.com/uc?export=view&amp;id=1XaeHJLCEnFA2ft8WW8fUmmLveuQzpUOs" alt="Open ArcGIS Pro Map Project"></p>
+</li>
+<li>
+<p>In the <strong>Insert</strong> tab &gt;&gt; <strong>New Map</strong>, and rename the map <code>Crop Type and SOC</code><br>
+<img src="http://drive.google.com/uc?export=view&amp;id=1Hpy7mndAIzPr-g0ghCWkUCrGCeoqRlMP" alt="Insert new map"></p>
+</li>
+<li>
+<p>Add the following data layers from the <em>FarminginIA_ExerciseData</em> folder from <strong>Catalog</strong>:</p>
+<ul>
+<li><em>IowaCounties.shp</em></li>
+<li><em>IowaFieldBoundaries2019.shp</em></li>
+<li><em>soc_t1_30cm.tif</em></li>
+<li><em>soc_t2_me.tif</em></li>
+</ul>
+</li>
+</ol>
+<h3 id="tabulate-intersection">6.3 Tabulate Intersection</h3>
+<p>The <em>IowaFieldBoundaries2019</em> layer contains individual farm fields in Iowa. <strong>Open Attribute Table</strong> to see the information that would be useful for us, such as “Acres” and “d_MAJORITY” (crop type). We want to know for each county, the area and percentage of each crop type. We use <strong>Tabulate Intersection</strong> to compute these two intersecting layers.</p>
+<ol>
+<li>On the top of the interface, click on the <strong>View</strong> tab &gt;&gt; <strong>Geoprocessing</strong> window <img src="http://drive.google.com/uc?export=view&amp;id=1wr0tmQS6fqQrOV5xOCuyx-7kKvt--uik" alt="Geoprocessing window" width="35"></li>
+<li>Search <code>tabulate intersection</code> and double-click on the tool<br>
+<img src="http://drive.google.com/uc?export=view&amp;id=1gVnKcrI9ehdZ4q8lqEhmdp_KxdaANBVo" alt="Search tool"></li>
+<li>In the tool window:
+<ul>
+<li><strong>Input Zone Features</strong>: <strong>IowaCounties</strong></li>
+<li><strong>Zone Fields</strong>: CountyName</li>
+<li><strong>Input Class Features</strong>: IowaFieldBoundaries2019</li>
+<li><strong>Output Table</strong>: name the output file <code>TabulateCropType</code></li>
+<li><strong>Class Fields</strong>: d_MAJORITY</li>
+<li><strong>Output Units</strong>: Acres</li>
+<li>Click <strong>Run</strong><br>
+<img src="http://drive.google.com/uc?export=view&amp;id=1K0QvCW4DJOkaSfqRe2uKH34MIPWlkyv8" alt="Tabulate intersection"></li>
+</ul>
+</li>
+<li>Once the geoprocessing finishes, the output table <em>TabulateCropType</em> will show up under <strong>Contents</strong>. Right-click to open the table. You will see that the same county has several records (rows) - each for a crop type, its area in acres, and the percentage that it takes up in the overall area of the county.</li>
+</ol>
+<h3 id="pivot-table">6.4 Pivot Table</h3>
+<p>In order to visualize the composition of crop types within each county, we need the crop types as individual attributes that is associated to just one county. This is referred to as “flattening one-to-many relationships,” and we use <strong>Pivot Table</strong> to achieve the below:</p>
+<p><img src="http://drive.google.com/uc?export=view&amp;id=11Q1rYu749496Hc0Bv2JEG8H9O49NnEUA" alt="Pivot table"></p>
+<ol>
+<li>In the <strong>Geoprocessing</strong> pane, search and open the <strong>Pivot Table</strong> tool
+<ul>
+<li><strong>Input Table</strong>: TabulateCropType</li>
+<li><strong>Input Field</strong>: CountyName</li>
+<li><strong>Pivot Field</strong>: d_MAJORITY</li>
+<li>Click <strong>Run</strong><br>
+<img src="http://drive.google.com/uc?export=view&amp;id=19piRSXr6bSJRZL305gcOli3_yt2sz_Em" alt="Pivot table tool"></li>
+</ul>
+</li>
+<li>Once the geoprocessing finishes, a new table <em>TabulateCropType_PivotTable</em> gets added to your <strong>Contents</strong>. Open the table to see the transposed results.</li>
+</ol>
+<h3 id="join-field">6.5 Join Field</h3>
+<p>The crop type information we derived for each county is tabular, with no geometries associated with them. However, we do have geographic information in the table that is unique to each record: the county name. We also have the county geometries portrayed by the <em>IowaCounties</em> layer. To add the tabular data to the counties shapes, we use the county name that they both share.</p>
+<ol>
+<li>In the <strong>Geoprocessing</strong> pane, search and open the <strong>Join Field</strong> tool
+<ul>
+<li><strong>Input Table</strong>: IowaCounties</li>
+<li><strong>Input Join Field</strong>: CountyName</li>
+<li><strong>Join Table</strong>: TabulateCropType_PivotTable</li>
+<li><strong>Join Table Field</strong>: CountyName</li>
+<li><strong>Transfer Fields</strong>:
+<ul>
+<li>Edible Crop</li>
+<li>Feed Crop</li>
+<li>Non Agriculture</li>
+<li>Other</li>
+</ul>
+</li>
+<li>Click <strong>Run</strong><br>
+<img src="http://drive.google.com/uc?export=view&amp;id=1F9odW9JHDX1gZ3uei0w0AHe16IDQ7xyW" alt="Join field"></li>
+</ul>
+</li>
+<li>Once the geoprocessing finishes, <strong>Open the Attribute Table</strong> for <em>IowaCounties</em> and you will see that the crop type attributes are added.</li>
+</ol>
+<h3 id="chart-symbols">6.6 Chart Symbols</h3>
+<p>We can visualize the crop composition for each county using chart symbols.</p>
+<ol>
+<li>Open <strong>Symbology</strong> for <em>IowaCounties</em>
+<ul>
+<li>Under <strong>Primary symbology</strong>, choose <strong>Charts</strong></li>
+<li>Next, under <strong>Chart type</strong>, select <strong>Pie Chart</strong></li>
+<li>In Fields, select:
+<ul>
+<li>Edible_Cro</li>
+<li>Feed_Crop</li>
+<li>Non_Agricu</li>
+<li>Other</li>
+</ul>
+</li>
+<li>On the right to each field, rename the <strong>Labels</strong>:
+<ul>
+<li><code>Human Edible Crop</code></li>
+<li><code>Feed/Commodity Crop</code></li>
+<li><code>Non Agriculture</code></li>
+<li><code>Other</code></li>
+</ul>
+</li>
+<li>Change the color ramp to “Set 1 (4 Classes)”<br>
+<img src="http://drive.google.com/uc?export=view&amp;id=1Z_Pm7Gt6vE0WgHZLdDZWFG59XyxFEIs2" alt="Chart symbology"></li>
+</ul>
+</li>
+<li>In <strong>Contents</strong>, turn off all the other layers except for <em>IowaCounties</em></li>
+</ol>
+<h3 id="raster-calculations">6.7 Raster Calculations</h3>
+<p>To quantify change in soil carbon, we need two data layers that represent two time periods: <em>soc_t1_30cm.tif</em> (current) and <em>soc_t2_me.tif</em> (future). These two layers are raster data (fields view) as opposed to vector data (discrete objects view) that we have been using so far. The values in each cell/pixel represent soil organic carbon in tons per hectare. Our goal here is to calculate the average change in soil carbon for each county, to see if the composition in crop type has an impact, i.e. less soil carbon in counties that have more commodity crop.</p>
+<ol>
+<li>On the top of the interface, click on <strong>Analysis</strong> tab &gt;&gt; <strong>Raster Functions</strong></li>
+<li>Under <strong>Math</strong>, click on <strong>Minus</strong><br>
+<img src="http://drive.google.com/uc?export=view&amp;id=1CuEl25suGk_QZy_Uiio3E1g_pekGO3oH" alt="Raster function: minus"></li>
+<li>For the value in each cell, the Minus function subtracts the second input from the first, so our inputs are: <em>soc_t2_me.tif</em> - <em>soc_t1_30cm.tif</em><br>
+<img src="http://drive.google.com/uc?export=view&amp;id=1LPTb8WIIL7o-800OP_a_33KIQnciFVc_" alt="Raster function: minus properties">
+<ul>
+<li>Click <strong>Create New Layer</strong></li>
+</ul>
+</li>
+<li>Rename the new raster layer that gets created (<em>Minus_soc_t2_me.tif_soc_t1_30cm.tif</em>) to <code>Change in SOC</code></li>
+</ol>
+<p><img src="http://drive.google.com/uc?export=view&amp;id=1i0Zdve_lMxECHJuQkecPI560jMNAVE-X" alt="Crop type and SOC"></p>
 <h3 id="section"></h3>
 <hr class="footnotes-sep">
 <section class="footnotes">
