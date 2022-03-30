@@ -617,6 +617,93 @@ Save <i class="material-icons">save</i> your map.
 <div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #8a6d3b;; background-color: #fcf8e3; border-color: #faebcc;"><i class="material-icons">warning</i>
 Save <i class="material-icons">save</i> your map.
   </div>
+<h3 id="reclassify-field">6.8 Reclassify Field</h3>
+<p>When we examine the farm fields layer (<em>IowaFieldBoundaries2019</em>), we currently have quantitative information about the farm size (in “Acres”), but we don’t have categorical information that contextualizes them in small, medium, or large. To do this, we will use <strong>Reclassify Field</strong> that classifies the acreage into those specified categories.</p>
+<ol>
+<li>In <strong>Geoprocessing</strong>, search and open <strong>Reclassify Field</strong>.
+<ul>
+<li><strong>Input Table</strong>: IowaFieldBoundaries2019</li>
+<li><strong>Field to Reclassify</strong>: Acres</li>
+<li><strong>Reclassification Method</strong>: Natural breaks (Jenks)</li>
+<li><strong>Number of Classes</strong>: 3</li>
+<li><strong>Output Field Name</strong>: <code>FarmSize</code></li>
+</ul>
+</li>
+</ol>
+<p><img src="http://drive.google.com/uc?export=view&amp;id=1RzHPuSDirJbJpCNRv-KNPt3hxnWvAy2G" alt="Reclassify field"></p>
+<ol start="2">
+<li>Once the geoprocessing finishes, you will see two new fields added: “FarmSize” and “FarmSize_R.” This tool coded the numeric ranges into categorical data, i.e.:</li>
+</ol>
+
+<table>
+<thead>
+<tr>
+<th>FarmSize</th>
+<th>Description</th>
+<th>Acres</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Small</td>
+<td>0.000010 - 48.203499</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Medium</td>
+<td>48.203500 - 129.522995</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Large</td>
+<td>129.522996 - 2518.120117</td>
+</tr>
+</tbody>
+</table>
+<div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #3c763d; background-color: #dff0d8; border-color: #d6e9c6;"><i class="material-icons">lightbulb_outline</i>
+Now that you have the “FarmSize” information, you can follow the same procedures as “CropType”
+  </div>
+<div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #8a6d3b;; background-color: #fcf8e3; border-color: #faebcc;"><i class="material-icons">warning</i>
+Save <i class="material-icons">save</i> your map.
+  </div>
+<h3 id="calculate-new-field">6.9 Calculate New Field</h3>
+<p>To investigate the change in water quality, we want to calculate the percent change in elevated nitrate tests for each county.</p>
+<ol>
+<li>Add the following two tables to your map: <em>Nitrate_County2010.csv</em> and <em>Nitrate_County2020.csv</em></li>
+<li>Follow the previous <strong>Join Field</strong> procedures to join both 2010 and 2020 tables to your <em>IowaCounties</em> layer</li>
+<div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #3c763d; background-color: #dff0d8; border-color: #d6e9c6;"><i class="material-icons">lightbulb_outline</i>
+Hint: the shared common field is "CountyName"
+  </div>
+<li>After each join, you should rename the column header to <code>PerElev_year</code> so you can distinguish the two columns<br>
+<img src="http://drive.google.com/uc?export=view&amp;id=1dUSOeBUr3WnNJfN5X_Zu7ybr05DL-ua8" alt="Change field name"></li>
+<li>Your <em>IowaCounties</em> layer should have two additional columns: “PerElev_2010” and “PerElev_2020”<br>
+<img src="http://drive.google.com/uc?export=view&amp;id=17S-GX9bRuvjvQaHmeUnWCslsYKM1tPSz" alt="IowaCounties attribute table with 2010 and 2020 percent elevated nitrate"></li>
+<li>On the top left corner of the IowaCounties attribute table, click <strong>Add Field</strong> <img src="http://drive.google.com/uc?export=view&amp;id=1VyJP4UnmN1pTmFjZ716YskaaW_DabvQQ" alt="Add table field" width="175">
+<ul>
+<li>For <strong>Field Nam</strong>e, type in <code>NitrateCha</code></li>
+<li>For <strong>Data Type</strong>, choose “Double” (this allows decimals)<br>
+<img src="http://drive.google.com/uc?export=view&amp;id=1w4L4A9dk8iMFM0Q7OyK3De7n_l28A92P" alt="Add table field parameters"></li>
+<li>Click <strong>Save</strong> on top at the ribbon to save this edit <img src="http://drive.google.com/uc?export=view&amp;id=146F7GdYlxr11CTknSUBDjvBPoXDnYcrf" alt="Save edits"></li>
+</ul>
+</li>
+<li>Back in the <em>IowaCounties</em> table, you will see this “NitrateCha” field. Next to Add Field, click on <strong>Calculate Field</strong>. <img src="http://drive.google.com/uc?export=view&amp;id=1E8wXM9qPy4Q9qJeA570OqMSvIHhpyMPO" alt="Calculate field" width="180"></li>
+<li>In the Calculate Field window:
+<ul>
+<li>For <strong>Field Name</strong>, select “NitrateCha”</li>
+<li>To the Expression, you double-click to select the appropriate column, i.e. <em>PerElev_2020 - PerElev2010</em><br>
+<img src="http://drive.google.com/uc?export=view&amp;id=1L4w0pwfka4krsDPG1vFYHCy1W5T28qjE" alt="Calculate field parameters"></li>
+</ul>
+</li>
+<li>Click OK, and you will see a new field that is the change in percent elevated nitrate levels between 2010 and 2020.<br>
+<img src="http://drive.google.com/uc?export=view&amp;id=1Sn8pdiD0cXxaUjXFf15U7Kj_p8CUaaRA" alt="New calculated field that shows change in elevated nitrate levels"></li>
+</ol>
+<div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #3c763d; background-color: #dff0d8; border-color: #d6e9c6;"><i class="material-icons">lightbulb_outline</i>
+You can make a copy of the IowaCounties layer in your Contents, then symbolize the “NitrateCha” field to show changes in water quality
+  </div>
+<div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #8a6d3b;; background-color: #fcf8e3; border-color: #faebcc;"><i class="material-icons">warning</i>
+Save <i class="material-icons">save</i> your map.
+  </div>
 <h3 id="section"></h3>
 <hr class="footnotes-sep">
 <section class="footnotes">
