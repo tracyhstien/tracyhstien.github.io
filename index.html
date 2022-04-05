@@ -60,6 +60,16 @@
     <li><a href="#reclassify-field">6.8 Reclassify Field</a></li>
     <li><a href="#calculate-new-field">6.9 Calculate New Field</a></li>
    </ul>
+  <li><a href="#communicating-with-maps">7. Communicating with Maps</a></li>
+    <ul>
+      <li><a href="#compilation-of-problem-statements-and-suggested-layers-to-use">7.1 Compilation of Problem Statements and Suggested Layers to Use</a></li>
+      <li><a href="#map-layout">7.2 Map Layout</a></li>
+        <ul>
+          <li><a href="#insert-a-new-layout">7.2.1 Insert a New Layout</a></li>
+        </ul>
+      <li><a href="#basic-map-elements">7.3 Basic Map Elements</a></li>
+      <li><a href="#get-feedback-on-your-map">7.4 Get Feedback on Your Map</a></li>
+    </ul>
 </ul>
 </li>
 </ul>
@@ -706,6 +716,76 @@ You can make a copy of the IowaCounties layer in your Contents, then symbolize t
 <div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #8a6d3b;; background-color: #fcf8e3; border-color: #faebcc;"><i class="material-icons">warning</i>
 Save <i class="material-icons">save</i> your map.
   </div>
+<h2 id="communicating-with-maps">7. Communicating with Maps</h2>
+<p>In the past two weeks, we learned several spatial analysis techniques to derive insights using existing data layers. By doing so, you also created new spatial data layers that you can incorporate into your final map to illustrate your argument.</p>
+<h3 id="compilation-of-problem-statements-and-suggested-layers-to-use">7.1 Compilation of Problem Statements and Suggested Layers to Use</h3>
+<p>Based on our two large questions to explore:</p>
+<ol>
+<li>Are factors such as crop type or farm size associated with different levels of impact on soil carbon storage or water quality?</li>
+<li>Can we detect environmental justice issues in the sitings of concentrated animal feeding operations (CAFOs)?</li>
+</ol>
+<p>Your map can potentially address any of the following questions:</p>
+<ul>
+<li>Does crop type have an impact on soil carbon storage?
+<ul>
+<li><em>IowaCounties</em> (symbolized with “Ediblee_Cro”, “Feed_Crop”, “Non_Agricu”, “Other” fields)</li>
+<li><em>Change in SOC</em> raster</li>
+</ul>
+</li>
+<li>Is crop type associated with changes in water quality, as measured by changes in elevated nitrate tests in private wells? (i.e. Do counties with higher percentages of commodity/feed crop type also have more increases in elevated nitrate tests than counties with lower percentage acres of commodity/feed crops?)
+<ul>
+<li><em>IowaCounties</em> (symbolized with crop type fields)</li>
+<li><em>IowaCounties</em> (symbolized using “NitrateCha” field)</li>
+</ul>
+</li>
+<li>Does farm size have an impact on soil carbon storage?
+<ul>
+<li><em>IowaCounties</em> (symbolized with “FarmSize” field)</li>
+<li><em>Change in SOC</em> raster</li>
+</ul>
+</li>
+<li>Is farm size associated with increases in elevated nitrate test results in private wells? (i.e. Do counties with large farm sizes also show increases in elevated nitrate tests in private wells and likewise do counties with small farm sizes show lower increases or no increases in elevated nitrate levels?)
+<ul>
+<li><em>IowaCounties</em> (symbolized with “FarmSize” field)</li>
+<li><em>IowaCounties</em> (symbolized with “NitrateCha” field)</li>
+</ul>
+</li>
+<li>Do CAFOs impact socially vulnerable communities in the high percentile, and which EJ communities are particularly burdened?
+<ul>
+<li><em>EJSCREEN_Iowa</em> (using either the “P_VULEPOCT” field, or bivariate using  “P_MINORPCT” and “P_LWINCPCT” fields)</li>
+<li><em>EJ_communities_with3mileCAFO</em></li>
+</ul>
+</li>
+<li>The Iowa Department of Natural Resources/Environmental Protection stipulated that CAFOs that are in the “open feedlot” category needs to be 200ft away from a private well.<sup class="footnote-ref"><a href="#fn7" id="fnref7">7</a></sup> How many, if any, open feedlot CAFOs violate this regulation?
+<ul>
+<li><em>Private_Well_Facilities</em></li>
+<li><em>animal_feeding_operations</em></li>
+</ul>
+</li>
+</ul>
+<h3 id="map-layout">7.2 Map Layout</h3>
+<p>We’ve been working on maps as a GIS map file. The map file (in our case, ArcGIS Pro Map Project .aprx) references the data layers, symbology…etc. in the program, and unless someone else also has all the data and ArcGIS Pro, they won’t be able to access your map. That’s why we need to create a map layout and export it as an image file or .pdf.</p>
+<h4 id="insert-a-new-layout">7.2.1 Insert a New Layout</h4>
+<ol>
+<li>Open your map project “FarminginIA_yourinitials.aprx”</li>
+<li>In the <strong>Insert</strong> tab &gt;&gt; <strong>New Layout</strong>, and choose “Letter - Landscape”<br>
+<img src="http://drive.google.com/uc?export=view&amp;id=1qLbneiLZBq2OQ40oav8yRrgFFgiW-jjI" alt="Insert new layout"></li>
+</ol>
+<h3 id="basic-map-elements">7.3 Basic Map Elements</h3>
+<p>Your layout should include these basic elements:</p>
+<ul>
+<li>A descriptive title</li>
+<li>Legend</li>
+<li>Map frame</li>
+<li>North arrow</li>
+<li>Scale</li>
+<li>Date, authorship, and data sources<br>
+<img src="http://drive.google.com/uc?export=view&amp;id=1rrXfKjNQKai8y0kZbKASp1a0CvNUDBtH" alt="Basic map elements"></li>
+</ul>
+<p>To insert an element, click on the respective icon, then <strong>Format</strong> further to your liking.<br>
+<img src="http://drive.google.com/uc?export=view&amp;id=1gPSc7NH0fuN5AWQA33TfAp0Psm9Yzt2D" alt="Insert map elements"></p>
+<h3 id="get-feedback-on-your-map">7.4 Get Feedback on Your Map</h3>
+<p>“Pac-Man prefers Southeastern Iowa. And, what are the values for Soil Organic Carbon?” - Jon, Director of the SAL</p>
 <h3 id="section"></h3>
 <hr class="footnotes-sep">
 <section class="footnotes">
@@ -721,6 +801,8 @@ Save <i class="material-icons">save</i> your map.
 <li id="fn5" class="footnote-item"><p>p.21, EJSCREEN Technical Documentation <a href="#fnref5" class="footnote-backref">↩︎</a></p>
 </li>
 <li id="fn6" class="footnote-item"><p>US Census Bureau, <a href="https://www.census.gov/library/stories/2020/09/poverty-rates-for-blacks-and-hispanics-reached-historic-lows-in-2019.html">Inequalities Persist Despite Decline in Poverty For All Major Race and Hispanic Origin Groups</a>, 2020 <a href="#fnref6" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn7" class="footnote-item"><p><a href="https://www.iowadnr.gov/Environmental-Protection/Animal-Feeding-Operations/AFO-Construction-Permits#:~:text=Open%20feedlots,%20solids,and%20deep%20wells">AFO construction permits</a> <a href="#fnref7" class="footnote-backref">↩︎</a></p>
 </li>
 </ol>
 </section>
